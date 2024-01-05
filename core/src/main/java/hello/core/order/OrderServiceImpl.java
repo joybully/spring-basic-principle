@@ -8,10 +8,11 @@ import hello.core.member.MemberService;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor//OrderServiceImpl의 생성자를 자동으로 만들어준다(롬복이다)
+//@RequiredArgsConstructor//OrderServiceImpl의 생성자를 자동으로 만들어준다(롬복이다)
 public class OrderServiceImpl implements OrderService{
 
 //    private MemberRepository memberRepository;
@@ -38,11 +39,12 @@ public class OrderServiceImpl implements OrderService{
 //    }
 
     //@RequiredArgsConstructor의 롬복을 이용해 아래의 생성자를 생략할 수 있다
-//    @Autowired
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        //Qualifier는 2개의 빈들 중 생성자에서 선택할 때 사용
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
