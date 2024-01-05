@@ -16,20 +16,24 @@ public class OrderServiceImpl implements OrderService{
 //    private DiscountPolicy discountPolicy;
 
     //필드주입 하지만 권장하지 않는다
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private DiscountPolicy discountPolicy;
+//    @Autowired private MemberRepository memberRepository;
+//    @Autowired private DiscountPolicy discountPolicy;
+
+    //final이 들어가면 초기값을 넣어주거나 생성자가 있어야한다
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
     //수정자주입
-    @Autowired
-    public void setMemberRepository(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-    }
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository){
+//        this.memberRepository = memberRepository;
+//    }
 
     //수정자주입
-    @Autowired
-    public void setDiscountPolicy(DiscountPolicy discountPolicy){
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy){
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
