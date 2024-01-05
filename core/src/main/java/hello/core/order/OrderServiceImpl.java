@@ -1,6 +1,7 @@
 package hello.core.order;
 
 import com.sun.source.tree.UsesTree;
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
@@ -40,7 +41,7 @@ public class OrderServiceImpl implements OrderService{
 
     //@RequiredArgsConstructor의 롬복을 이용해 아래의 생성자를 생략할 수 있다
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         //Qualifier는 2개의 빈들 중 생성자에서 선택할 때 사용
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
